@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityView Ltd - Corporate Accommodation Solutions for Project Teams</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #e8ddd4;
+            --primary-color: #2c2c2c;
+            --secondary-color: #4a4a4a;
+            --accent-color: #1a1a1a;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f5f0eb;
+            --white: #ffffff;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--cream);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-scrolled {
+            backdrop-filter: blur(10px);
+            background: rgba(232, 221, 212, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            letter-spacing: -0.05em;
+            font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+            text-transform: none;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: var(--cream);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: inline-block;
+            border: none;
+        }
+
+        .nav-links .cta-button {
+            background: var(--primary-color);
+            color: var(--cream);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: inline-block;
+            border: none;
+        }
+
+        .nav-links .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: var(--primary-color);
+            color: var(--cream);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--cream) 0%, #d4c4b6 100%);
+            padding: 150px 5% 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%232c2c2c10" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,138.7C672,149,768,203,864,213.3C960,224,1056,192,1152,170.7C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .stats-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 10px;
+            background: var(--bg-light);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 5%;
+            background: var(--bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--cream);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 100px 5%;
+            background: var(--white);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -2rem;
+            top: 2rem;
+            font-size: 2rem;
+            color: var(--text-light);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--cream);
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Solutions Section */
+        .solutions {
+            padding: 100px 5%;
+            background: var(--bg-light);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .solution-content h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .solution-list li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .solution-list li::before {
+            content: '✓';
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--cream);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .solution-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--cream);
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--white);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .form-group select option {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .submit-btn {
+            background: var(--cream);
+            color: var(--primary-color);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 60px 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .partners h3 {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: normal;
+        }
+
+        .partners-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .partner-logo {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+            min-width: 140px;
+            height: 80px;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--cream);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-address {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .solutions-grid,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .partners-grid {
+                gap: 2rem;
+            }
+
+            .partner-logo {
+                min-width: 120px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">CityView<span style="display: inline-block; margin-left: 4px; vertical-align: baseline;">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: baseline;">
+                    <rect x="1" y="8" width="6" height="7" fill="currentColor"/>
+                    <polygon points="1,8 4,4 7,8" fill="currentColor"/>
+                    <rect x="9" y="6" width="6" height="9" fill="currentColor"/>
+                    <polygon points="9,6 12,2 15,6" fill="currentColor"/>
+                    <rect x="2.5" y="10" width="1.5" height="3" fill="white"/>
+                    <rect x="10.5" y="8" width="1.5" height="3" fill="white"/>
+                </svg>
+            </span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#process">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-button">Get Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Corporate Accommodation for Project Teams</h1>
+                <p>Turnkey housing solutions for your workforce. From single rooms to entire apartment buildings, we handle everything so you can focus on your project.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button">Request Quote</a>
+                    <a href="#services" class="cta-button" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);">View Solutions</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="stats-card">
+                    <div class="stat-item">
+                        <div class="stat-value">24h</div>
+                        <div class="stat-label">Booking Response</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">Properties</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">-40%</div>
+                        <div class="stat-label">vs Hotel Costs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Complete Accommodation Solutions</h2>
+            <p>Everything your teams need for comfortable extended stays</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Corporate Houses</h3>
+                <p>Fully furnished houses with multiple bedrooms, perfect for project teams and extended corporate stays.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Property Management</h3>
+                <p>Complete property management services for landlords. Marketing, tenant screening, maintenance, and rent collection - all handled professionally.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎬</div>
+                <h3>Film & TV Crew Housing</h3>
+                <p>Specialized accommodation solutions for film and television productions, with flexible booking options.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Tech Team Accommodation</h3>
+                <p>High-speed internet ready properties for software development teams and IT professionals.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Contractor Housing</h3>
+                <p>Cost-effective solutions for construction and contracting teams with flexible terms and group bookings.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🇬🇧</div>
+                <h3>Nationwide Coverage</h3>
+                <p>Properties available across the UK with consistent quality standards and local support teams.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="section-header">
+            <h2>How We Work</h2>
+            <p>Simple, efficient process from inquiry to move-in</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Tell Us Your Needs</h3>
+                <p>Share your project location, team size, duration, and budget requirements.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Receive Proposals</h3>
+                <p>Get tailored accommodation options with transparent pricing within 24 hours.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>We Handle Everything</h3>
+                <p>From contracts to check-in, we manage all details and logistics.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Ongoing Support</h3>
+                <p>24/7 assistance, regular check-ins, and flexible adjustments as needed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions" id="solutions">
+        <div class="section-header">
+            <h2>Industry Solutions</h2>
+            <p>Tailored accommodation for every sector</p>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-content">
+                <h3>Contractors & Construction</h3>
+                <p>Supporting construction projects with reliable workforce housing solutions nationwide.</p>
+                <ul class="solution-list">
+                    <li>Multi-bedroom houses for construction crews</li>
+                    <li>Flexible contracts matching project timelines</li>
+                    <li>Cost-effective group accommodation rates</li>
+                    <li>Properties near major construction sites</li>
+                </ul>
+            </div>
+            <div class="solution-image">
+                <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">1,000+</h3>
+                <p style="font-size: 1.2rem;">Team Members Housed</p>
+            </div>
+            <div class="solution-image">
+                <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">Film & TV</h3>
+                <p style="font-size: 1.1rem;">Specialized housing for cast and crew during productions across the UK</p>
+            </div>
+            <div class="solution-content">
+                <h3>Software Development Teams</h3>
+                <p>Premium accommodation for tech professionals on development projects and client assignments.</p>
+                <ul class="solution-list">
+                    <li>High-speed internet and workspace areas</li>
+                    <li>Modern, fully-equipped apartments</li>
+                    <li>Flexible booking modifications</li>
+                    <li>Prime locations near tech hubs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <h3>Trusted by Leading Organizations</h3>
+        <div class="partners-grid">
+            <div class="partner-logo">
+                <svg width="140" height="60" viewBox="0 0 140 60" fill="none">
+                    <!-- Premier League Lion Logo -->
+                    <g transform="translate(10, 5)">
+                        <!-- Lion head with crown -->
+                        <path d="M20 15 L15 8 L20 8 L25 5 L30 8 L35 5 L40 8 L35 15 Z" fill="#37003c"/>
+                        <circle cx="30" cy="25" r="18" fill="#37003c"/>
+                        <path d="M15 20 Q30 35 45 20 Q40 40 30 45 Q20 40 15 20" fill="#37003c"/>
+                        <circle cx="25" cy="22" r="2" fill="white"/>
+                        <circle cx="35" cy="22" r="2" fill="white"/>
+                        <path d="M25 28 Q30 32 35 28" stroke="white" stroke-width="2" fill="none"/>
+                    </g>
+                    <text x="70" y="25" fill="#37003c" font-size="16" font-weight="bold">Premier</text>
+                    <text x="70" y="45" fill="#37003c" font-size="16" font-weight="bold">League</text>
+                </svg>
+            </div>
+            <div class="partner-logo">
+                <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                    <!-- Sportfields Logo -->
+                    <g transform="translate(20, 10) rotate(45 20 20)">
+                        <path d="M5 15 Q15 5 25 15 Q35 25 25 35 Q15 45 5 35 Q-5 25 5 15" fill="#1e3a8a"/>
+                        <path d="M15 25 Q25 15 35 25 Q25 35 15 25" fill="#ffffff"/>
+                        <path d="M25 15 Q35 25 25 35 Q35 45 45 35 Q55 25 45 15 Q35 5 25 15" fill="#16a34a"/>
+                    </g>
+                    <text x="60" y="40" fill="#1e3a8a" font-size="10" font-weight="bold">SPORTFIELDS</text>
+                </svg>
+            </div>
+            <div class="partner-logo">
+                <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+                    <!-- HS2 Logo -->
+                    <rect x="10" y="15" width="60" height="30" fill="#1e3a8a" rx="3"/>
+                    <text x="40" y="35" text-anchor="middle" fill="white" font-size="18" font-weight="bold">HS2</text>
+                </svg>
+            </div>
+            <div class="partner-logo">
+                <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                    <!-- Kier Logo -->
+                    <g transform="translate(10, 15)">
+                        <!-- Red triangle -->
+                        <polygon points="0,0 20,0 10,15" fill="#dc2626"/>
+                        <!-- Teal squares -->
+                        <rect x="8" y="20" width="4" height="4" fill="#0891b2"/>
+                        <rect x="13" y="20" width="4" height="4" fill="#0891b2"/>
+                        <rect x="8" y="25" width="4" height="4" fill="#0891b2"/>
+                    </g>
+                    <text x="40" y="35" fill="#000000" font-size="20" font-weight="bold">KIER</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div>
+                <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Let's Discuss Your Project</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Get custom accommodation solutions and corporate rates for your team. We respond within 24 hours.</p>
+                <div style="margin-top: 2rem;">
+                    <p style="margin-bottom: 1rem;"><strong>Mobile:</strong> +44 7852 148980</p>
+                    <p style="margin-bottom: 1rem;"><strong>Corporate Sales:</strong> charlie@cityviewltd.com</p>
+                    <p><strong>Coverage:</strong> Nationwide UK Coverage</p>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" name="company" required placeholder="Your Company Ltd">
+                </div>
+                <div class="form-group">
+                    <label for="email">Business Email</label>
+                    <input type="email" id="email" name="email" required placeholder="contact@company.com">
+                </div>
+                <div class="form-group">
+                    <label for="location">Project Location</label>
+                    <input type="text" id="location" name="location" required placeholder="London, Manchester, Birmingham...">
+                </div>
+                <div class="form-group">
+                    <label for="team-size">Team Size</label>
+                    <select id="team-size" name="team-size" required>
+                        <option value="">Select team size</option>
+                        <option value="1-5">1-5 people</option>
+                        <option value="6-20">6-20 people</option>
+                        <option value="21-50">21-50 people</option>
+                        <option value="50+">50+ people</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Project Duration</label>
+                    <select id="duration" name="duration" required>
+                        <option value="">Select duration</option>
+                        <option value="1-4 weeks">1-4 weeks</option>
+                        <option value="1-3 months">1-3 months</option>
+                        <option value="3-6 months">3-6 months</option>
+                        <option value="6+ months">6+ months</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="industry">Industry Type</label>
+                    <select id="industry" name="industry" required>
+                        <option value="">Select industry</option>
+                        <option value="construction">Construction & Contracting</option>
+                        <option value="software">Software Development</option>
+                        <option value="film-tv">Film & TV Production</option>
+                        <option value="consulting">Professional Services</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Requirements</label>
+                    <textarea id="message" name="message" rows="3" placeholder="Special requirements, budget range, preferred areas..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Get Quote</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 CityView Ltd. All rights reserved.</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">Corporate Accommodation Solutions | Houses & Flats | Nationwide Coverage</p>
+            <div class="footer-address">
+                <p><strong>CityView Ltd</strong></p>
+                <p>Chancery Station House, 31-33 High Holborn, London WC1V 6AX</p>
+                <p>Mobile: +44 7852 148980 | Email: charlie@cityviewltd.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.company || !data.email || !data.location || !data['team-size'] || !data.duration || !data.industry) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Create email body
+            const emailBody = `
+New Corporate Accommodation Inquiry:
+
+Company: ${data.company}
+Contact Email: ${data.email}
+Project Location: ${data.location}
+Team Size: ${data['team-size']}
+Duration: ${data.duration}
+Industry: ${data.industry}
+Additional Requirements: ${data.message || 'None specified'}
+
+Please respond within 24 hours with accommodation options and pricing.
+            `;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:charlie@cityviewltd.com?subject=Corporate Accommodation Request - ${data.company}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show confirmation message
+            alert('Thank you for your inquiry! Your email client should open with a pre-filled message. We will respond within 24 hours.');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Add floating animation to stats cards
+        const statsCard = document.querySelector('.stats-card');
+        if (statsCard) {
+            statsCard.addEventListener('mouseenter', () => {
+                statsCard.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            statsCard.addEventListener('mouseleave', () => {
+                statsCard.style.transform = 'translateY(0) scale(1)';
+            });
+        }
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.querySelectorAll('.service-card, .process-step, .solution-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
